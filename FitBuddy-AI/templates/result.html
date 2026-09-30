@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FitBuddy - Your Fitness Plan</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f1115;
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #181b21;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 14px;
+            border: 1px solid #292d35;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #101216;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #101216;
+            color: white;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 13px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #28a745;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 10px;
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            .info {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🏋️ Your FitBuddy Plan</h1>
+        <p>Personalized with AI</p>
+    </div>
+
+    <div class="card">
+
+        <h2>👤 User Profile</h2>
+
+        <div class="info">
+
+            <div class="info-box">
+                <strong>Username</strong>
+                <br>
+                {{ username }}
+            </div>
+
+            <div class="info-box">
+                <strong>Goal</strong>
+                <br>
+                {{ goal }}
+            </div>
+
+            <div class="info-box">
+                <strong>Intensity</strong>
+                <br>
+                {{ intensity }}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>💪 Workout Plan</h2>
+
+        <pre>{{ workout_plan }}</pre>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🥗 Nutrition & Recovery</h2>
+
+        <pre>{{ nutrition_tip }}</pre>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>📝 Improve Your Workout</h2>
+
+        <p>
+            Give feedback and FitBuddy will generate an updated workout plan.
+        </p>
+
+        <form action="/submit-feedback" method="post">
+
+            <input
+                type="hidden"
+                name="user_id"
+                value="{{ user_id }}"
+            >
+
+            <textarea
+                name="feedback"
+                placeholder="Example: The workout is too difficult. Reduce intensity and add more recovery."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Update My Workout
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <a class="back" href="/">
+        ← Generate another workout
+    </a>
+
+</div>
+
+</body>
+</html>
